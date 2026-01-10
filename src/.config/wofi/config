@@ -1,0 +1,11 @@
+mode=drun
+prompt=
+#allow_images=true
+#image_size=30px
+width=360
+lines=1
+hide_scroll=true
+matching=fuzzy
+term=kitty
+monitor=DP-1
+close_on_focus_loss=true
