@@ -2,6 +2,7 @@
 
 cp -i ./src/.bashrc ~
 cp -i ./src/.tmux.conf ~
+cp -ri ./src/.fonts ~
 cp -ri ./src/.config/nvim ~/.config
 cp -ri ./src/.config/wofi ~/.config
 cp -ri ./src/.config/hypr ~/.config
