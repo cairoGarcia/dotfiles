@@ -1,0 +1,93 @@
+#!/usr/bin/python
+import subprocess
+import os
+
+# Python code is easily readable, that is why almost no comments
+
+PROMPT_DETAILS = ["All in one:\n"\
+                  " Apply and install everything",
+
+                  "Apply configs for:\n"\
+                  " bash, tmux, fonts, nvim, hypr, kitty\n"\
+                  " Be sure to have installed all of the above",
+
+                  "Install Developer Environment:\n"
+                  " Will install:\n"\
+                  "  pacman:\n"\
+                  "   git, openssh, rustup, gcc, lua, nasm, qemu\n"\
+                  "  yay:\n"\
+                  "   zen-browser, nvim-nightly",
+
+                  "Window Manager:\n"\
+                  " Will install:\n"\
+                  "  pacman:\n"\
+                  "   xfce4-panel/appfinder, hyprland, hyprpaper,\n"\
+                  "   hyprlock, hyprpolkit-agent, kitty, tmux"
+                  ]
+
+OPT_SH = ["all_in_one", "configs", "dev_env", "window_manager"]
+
+def run_sh(opt: str):
+    match opt:
+        case "all_in_one":
+            subprocess.run("sh ./sh/aio.sh", shell=True)
+        case "configs":
+            subprocess.run("sh ./sh/configs.sh", shell=True)
+        case "dev_env":
+            subprocess.run("sh ./sh/devenv.sh", shell=True)
+        case "window_manager":
+            subprocess.run("sh ./sh/wm.sh", shell=True)
+
+def confirm_prompt(opt: int):
+    # Adapts opt for better indexing
+    opt -= 1
+
+    try:
+        print(PROMPT_DETAILS[opt])
+        consent = str(input("Are you sure? y or n: "))
+
+        if consent is not ("y" or "Y"):
+            main()
+
+        run_sh(OPT_SH[opt])
+
+    except KeyboardInterrupt:
+        print()
+        return 0
+
+def main():
+    os.system("clear")
+
+    try:
+        print(\
+        "     CAIRO dotFILES  \n",\
+        "  ´/--------------/´ \n",\
+        "      1: AIO \n",\
+        "      2: CONFIGS \n",\
+        "      3: DEVENV \n",\
+        "      4: WM \n",\
+        "      q: QUIT \n",\
+        ",/--------------/,")
+
+        opt = input("Choose (1-4): ")
+
+        match (opt):
+            case "q":
+                exit()
+            case "1":
+                confirm_prompt(int(opt))
+            case "2":
+                confirm_prompt(int(opt))
+            case "3":
+                confirm_prompt(int(opt))
+            case "4":
+                confirm_prompt(int(opt))
+            case _:
+                main()
+
+    # Clean Ctrl-C
+    except KeyboardInterrupt:
+        print()
+        return 0
+
+main()

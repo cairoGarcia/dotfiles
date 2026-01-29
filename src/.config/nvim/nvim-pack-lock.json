@@ -8,9 +8,17 @@
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
+    "darkrose.nvim": {
+      "rev": "7d3ffd24460dafdcdbd50322442b8f4d1152c6f6",
+      "src": "https://github.com/water-sucks/darkrose.nvim"
+    },
     "forest-night.nvim": {
       "rev": "d4cbe768d5044c06fbb9c0987d0518bac2699aae",
       "src": "https://github.com/adibhanna/forest-night.nvim"
+    },
+    "gruvbox.nvim": {
+      "rev": "a472496e1a4465a2dd574389dcf6cdb29af9bf1b",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "lorem.nvim": {
       "rev": "81bd3c22d2429712677be53166665ccf89be5a05",

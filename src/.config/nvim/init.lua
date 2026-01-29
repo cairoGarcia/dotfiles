@@ -1,32 +1,42 @@
-vim.opt.guicursor = ""
+require "remap"
+require "dotcolor"
 
-vim.opt.swapfile = false
-vim.opt.backup = false
+local theme = "tohru_flame"
+local colorscheme = "darkrose"
 
-vim.opt.scrolloff = 100
+local color_fg = dotcolor(theme, "fg")
+local color_bg = dotcolor(theme, "bg")
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+
+vim.o.guicursor = ""
+
+vim.o.swapfile = false
+vim.o.backup = false
+
+vim.o.scrolloff = 100
+
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- allow to copy/paste from/to any app
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
 
 -- bufferline
-vim.opt.termguicolors = true
-vim.opt.undofile = true
+vim.o.termguicolors = true
+vim.o.undofile = true
 
 local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
     { src = gh("derektata/lorem.nvim") },
     { src = gh("jake-stewart/multicursor.nvim") },
-    { src = gh("adibhanna/forest-night.nvim") },
+    -- { src = gh("adibhanna/forest-night.nvim") },
     { src = gh("numToStr/Comment.nvim") },
     { src = gh("akinsho/bufferline.nvim") },
     { src = gh("fedepujol/move.nvim") },
@@ -36,9 +46,10 @@ vim.pack.add({
     { src = gh("nvim-treesitter/nvim-treesitter") },
     { src = gh("windwp/nvim-autopairs") },
     { src = gh("windwp/nvim-ts-autotag") },
+    { src = gh("water-sucks/darkrose.nvim") },
 })
 
-vim.cmd("colorscheme forest-night")
+vim.cmd("colorscheme "..colorscheme)
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "Line", { bg = "none" })
 vim.api.nvim_set_hl(0, "signcolumn", { bg = "none" })
@@ -46,7 +57,7 @@ vim.api.nvim_set_hl(0, "signcolumn", { bg = "none" })
 vim.o.signcolumn = "yes"
 
 vim.cmd('set statusline=%<%f\\ カイロちゃんは最古だ\\ %h%w%m%r%=%-14.(%l,%c%V%)\\ :3\\ %P')
-vim.cmd(":hi statusline guifg=#406e69 guibg=#010101")
+vim.cmd(":hi statusline guifg="..color_fg.." guibg="..color_bg)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('my.lsp', { clear = true }),
@@ -64,4 +75,10 @@ require("bufferline").setup()
 require("lorem")
 require("mason").setup()
 
-vim.lsp.enable({"lua_ls"},{"html"}, {"rust_analyze"}, {"clangd"})
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("pylsp")
+vim.lsp.enable("asm_lsp")
+vim.lsp.enable("hyprls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("html")
