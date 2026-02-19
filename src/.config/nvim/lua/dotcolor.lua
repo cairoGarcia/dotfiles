@@ -6,6 +6,16 @@ function dotcolor (theme, color)
             ["fg"] = "#CB4047",
             ["bg"] = "#010101",
         },
+        ["sandler"] =
+        {
+            ["fg"] = "#f39b19",
+            ["bg"] = "#010101",
+        },
+        ["mono"] =
+        {
+            ["fg"] = "#bfbfbf",
+            ["bg"] = "#010101",
+        },
         ["default"] =
         {
             ["fg"] = "#129399",
@@ -14,7 +24,7 @@ function dotcolor (theme, color)
     }
 
     -- Nil checking 
-    if (theme or color) == nil then
+    if theme == nil or color == nil then
         print("Error on dotcolor! Setting color to: #000000")
         return "#000000"
     end

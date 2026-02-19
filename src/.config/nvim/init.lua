@@ -1,11 +1,13 @@
 require "remap"
 require "dotcolor"
+require "html"
+require "colorschemes"
 
-local theme = "tohru_flame"
-local colorscheme = "darkrose"
+local theme = "mono"
+local colorscheme = "fleur"
 
-local color_fg = dotcolor(theme, "fg")
 local color_bg = dotcolor(theme, "bg")
+local color_fg = dotcolor(theme, "fg")
 
 vim.o.expandtab = true
 vim.o.smartindent = true
@@ -27,26 +29,29 @@ vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
 
 
--- bufferline
-vim.o.termguicolors = true
-vim.o.undofile = true
 
 local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
-    { src = gh("derektata/lorem.nvim") },
+    { src = gh("nvim-telescope/telescope.nvim") },
+    { src = gh("nvim-lua/plenary.nvim") },
+
+    { src = gh("ryanoasis/vim-devicons") },
+
     { src = gh("jake-stewart/multicursor.nvim") },
-    -- { src = gh("adibhanna/forest-night.nvim") },
+
     { src = gh("numToStr/Comment.nvim") },
-    { src = gh("akinsho/bufferline.nvim") },
     { src = gh("fedepujol/move.nvim") },
+
     { src = gh("mbbill/undotree") },
-    { src = gh("neovim/nvim-lspconfig") },
     { src = gh("mason-org/mason.nvim") },
-    { src = gh("nvim-treesitter/nvim-treesitter") },
     { src = gh("windwp/nvim-autopairs") },
+    { src = gh("neovim/nvim-lspconfig") },
+    { src = gh("nvim-treesitter/nvim-treesitter") },
+
+
+    { src = gh("derektata/lorem.nvim") },
     { src = gh("windwp/nvim-ts-autotag") },
-    { src = gh("water-sucks/darkrose.nvim") },
 })
 
 vim.cmd("colorscheme "..colorscheme)
@@ -71,9 +76,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 require("lspconfig")
-require("bufferline").setup()
 require("lorem")
 require("mason").setup()
+
+-- bufferline
+vim.o.termguicolors = true
+vim.o.undofile = true
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")

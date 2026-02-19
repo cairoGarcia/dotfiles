@@ -1,0 +1,25 @@
+[shell]
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
+
+[pacman]
+hyprland
+hyprpaper
+hyprlock
+hyprpolkitagent
+fuzzel
+kitty
+tmux
+vim
+rustup
+openssh
+nasm
+qemu
+grim
+slurp
+
+[aur]
+nvim-nightly
+zen-browser

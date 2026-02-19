@@ -11,6 +11,9 @@ require('nvim-ts-autotag').setup({
   per_filetype = {
     ["html"] = {
       enable_close = true
+    },
+    ["php"] = {
+      enable_close = true
     }
   }
 })
