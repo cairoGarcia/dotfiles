@@ -67,7 +67,7 @@ local function gen_install()
 end
 
 local function apply_settings()
-    local cmd = "cp -ri "..dir.."/src/* "..home
+    local cmd = "cp -ra "..dir.."/src/. "..home.."/"
     print("Do you agree to execute: '"..cmd.."'?\n(y-n)")
     if (io.read() == "y") then; exec(cmd); end
 end
