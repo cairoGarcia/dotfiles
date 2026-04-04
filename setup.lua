@@ -76,10 +76,17 @@ print("What do you want to do?\n0-Quit\n1-Apply Settings\n2-Generate install.sh"
 
 local input = tonumber(io.read()) or panic("input error!")
 
-if (input == 0) then
-    return
-elseif (input == 1) then
-    apply_settings()
-elseif (input == 2) then
-    gen_install()
+while (true) do
+    if (input == 0) then
+        print("Quitting")
+    elseif (input == 1) then
+        apply_settings()
+    elseif (input == 2) then
+        gen_install()
+    else
+        print("Invalid input")
+        goto continue
+    end
+    break
+    ::continue::
 end
